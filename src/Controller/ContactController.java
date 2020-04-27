@@ -47,30 +47,21 @@ public class ContactController extends ContactService{
                 break;
             case 2:
                 System.out.println("Please enter new contact's information: ");
-                System.out.println("New contact's name: ");
-                String name = scanner.nextLine();
-                System.out.println("New contact's phone number: ");
-                String phoneNumber = scanner.nextLine();
-                System.out.println("New contact's group");
-                String group = scanner.nextLine();
-                System.out.println("New contact's date of birth");
-                String dateOfBirth = scanner.nextLine();
-                System.out.println("New contact's gender: ");
-                String gender = scanner.nextLine();
-                System.out.println("New contact's email: ");
-                String email = scanner.nextLine();
-                System.out.println("New contact's address: ");
-                String address = scanner.nextLine();
+                String name = inputName();
+                String phoneNumber = inputPhoneNumber();
+                String group = inputGroup();
+                String dateOfBirth = inputDateOfBirth();
+                String gender = inputGender();
+                String email = inputEmail();
+                String address = inputAddress();
                 addContact(name, phoneNumber, group, dateOfBirth, gender, email, address);
                 break;
             case 3:
-                System.out.println("Enter phone number to update: ");
-                String updatePhoneNumber = scanner.nextLine();
+                String updatePhoneNumber = inputPhoneNumber();
                 updateContact(updatePhoneNumber);
                 break;
             case 4:
-                System.out.println("Enter phone number to delete: ");
-                String delPhoneNumber = scanner.nextLine();
+                String delPhoneNumber = inputPhoneNumber();
                 deleteContact(delPhoneNumber);
                 break;
             case 5:
@@ -81,6 +72,7 @@ public class ContactController extends ContactService{
                 break;
             case 7:
                 contactIO.writeFile(contactList);
+                break;
             case 8:
                 System.exit(0);
         }

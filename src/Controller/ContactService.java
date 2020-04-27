@@ -11,9 +11,12 @@ public class ContactService extends Contact {
     Scanner scanner = new Scanner(System.in);
 
     public void displayContactList(){
+        System.out.printf("%-25s" + "%-30s" + "%-25s" + "%-25s" + "%-30s" + "%-30s" + "%-35s","Name","Phone number", "Group", "Date of Birth", "Gender", "Email", "Address");
+        System.out.println();
         for (Contact contact : contactList){
             System.out.println(contact.toString());
         }
+        System.out.println();
     }
 
     public void addContact(String name, String phoneNumber, String group, String dateOfBirth, String gender, String email, String address){
@@ -23,7 +26,7 @@ public class ContactService extends Contact {
 
     public boolean updateContact(String phoneNumber){
         for (Contact contact : contactList){
-            if (contact.getPhoneNumber() == phoneNumber){
+            if (contact.getPhoneNumber().equals(phoneNumber)){
                 System.out.println("Please add information to edit contact: ");
                 System.out.println("New group: ");
                 String newGroup = scanner.nextLine();
@@ -54,6 +57,7 @@ public class ContactService extends Contact {
         for (int i = 0; i < contactList.size(); i++){
             if (contactList.get(i).getPhoneNumber().equals(phoneNumber)){
                 contactList.remove(i);
+                System.out.println("Contact deleted");
                 return true;
             }
         }
@@ -65,29 +69,76 @@ public class ContactService extends Contact {
         System.out.println("Search by: ");
         System.out.println("1. Phone number");
         System.out.println("2. Name");
-        int userChoice = scanner.nextInt();
-        if (userChoice == 1){
-            System.out.println("Enter phone number to search: ");
-            String phoneNumber = scanner.nextLine();
-            for (Contact contact : contactList){
-                if (contact.getPhoneNumber().equals(phoneNumber)){
-                    System.out.println(contact.toString());
-                    return;
+        int userChoice = inputUserChoice();
+        switch (userChoice){
+            case 1:
+                System.out.println("Enter phone number to search: ");
+                String phoneNumber = scanner.nextLine();
+                for (Contact contact : contactList){
+                    if (contact.getPhoneNumber().equals(phoneNumber)){
+                        System.out.println(contact.toString());
+                        break;
+                    }
                 }
-            }
-            System.out.println("Phone number not found");
-            return;
-        } else if (userChoice == 2){
-            System.out.println("Enter contact name to search");
-            String name = scanner.nextLine();
-            for (Contact contact : contactList){
-                if (contact.getName().equals(name)){
-                    System.out.println(contact.toString());
-                    return;
+                System.out.println("Phone number not found");
+                break;
+            case 2:
+                String name = inputName();
+                for (Contact contact : contactList){
+                    if (contact.getName().equals(name)){
+                        System.out.println(contact.toString());
+                        break;
+                    }
                 }
-            }
-            System.out.println("Name not found");
-            return;
+                System.out.println("Name not found");
+                break;
         }
+    }
+
+    public int inputUserChoice(){
+        int userChoice = scanner.nextInt();
+        return userChoice;
+    }
+
+    public String inputName(){
+        System.out.println("Enter contact's name: ");
+        String name = scanner.nextLine();
+        return name;
+    }
+
+    public String inputPhoneNumber(){
+        System.out.println("Enter contact's phone number: ");
+        String phoneNumber = scanner.nextLine();
+        return phoneNumber;
+    }
+
+    public String inputGroup(){
+        System.out.println("Enter contact's group: ");
+        String group = scanner.nextLine();
+        return group;
+    }
+
+    public String inputDateOfBirth(){
+        System.out.println("Enter contact's date of birth: ");
+        String dateOfBirth = scanner.nextLine();
+        return dateOfBirth;
+    }
+
+    public String inputGender(){
+        System.out.println("Enter contact's gender: ");
+        String gender = scanner.nextLine();
+        return gender;
+    }
+
+    public String inputEmail(){
+        System.out.println("Enter contact's email: ");
+        String email = scanner.nextLine();
+        return email;
+    }
+
+    public String inputAddress(){
+        System.out.println("Enter contact's address: ");
+        String address = scanner.nextLine();
+        return address;
     }
 }

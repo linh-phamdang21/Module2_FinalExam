@@ -81,13 +81,7 @@ public class Contact {
 
     @Override
     public String toString() {
-        return "Contact{" +
-                "name='" + name + '\'' +
-                ", phoneNumber=" + phoneNumber +
-                ", address='" + address + '\'' +
-                ", email='" + email + '\'' +
-                ", gender='" + gender + '\'' +
-                ", group='" + group + '\'' +
-                '}';
+        return String.format("%-25s" + "%-30s" + "%-25s" + "%-25s" + "%-30s" + "%-30s" + "%-35s",
+                this.name, this.phoneNumber, this.group, this.dateOfBirth, this.gender, this.email, this.address );
     }
 }
